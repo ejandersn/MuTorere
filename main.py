@@ -8,8 +8,9 @@ from pygame.locals import (
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 800
-
-x,y = 50,100
+x = 50
+y = 100
+# x,y = 50,100
 
 sprite = pygame.image.load('piece_one.png')
 
