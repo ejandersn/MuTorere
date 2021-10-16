@@ -1,8 +1,10 @@
 import pygame
+from pygame.constants import K_BACKSPACE
 from pygame.locals import (
     K_ESCAPE,
     QUIT,
-    KEYDOWN
+    KEYDOWN,
+    K_BACKSPACE
 )
 
 SCREEN_WIDTH = 800
@@ -24,9 +26,13 @@ running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
-            user_text += event.unicode
+            if event.key == pygame.K_BACKSPACE:
+                 user_text = user_text[:-1]
+            else:
+                user_text += event.unicode
             if event.key ==  K_ESCAPE:
                 running = False
+            
         screen.fill((255,255,255))
         screen.blit(greenPerepereOne, (x,y))
         text_surface = base_font.render(user_text,True,(0,0,0))
