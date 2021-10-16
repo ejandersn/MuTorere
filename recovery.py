@@ -5,7 +5,6 @@ from pygame.locals import (
     KEYDOWN,
     K_BACKSPACE,
     K_RETURN,
-    MOUSEBUTTONDOWN,
     K_0,
     K_1,
     K_2,
@@ -41,7 +40,6 @@ class Perepere(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
 
-
 pygame.init()
 
 screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])
@@ -67,15 +65,44 @@ while running:
         bp_two = Perepere('blue_perepere.png',[six_x,six_y])
         bp_three = Perepere('blue_perepere.png',[seven_x,seven_y])
         bp_four = Perepere('blue_perepere.png',[eight_x,eight_y])
-      
-        if event.type == pygame.MOUSEBUTTONDOWN:
-                if gp_one.rect.collidepoint(event.pos): 
-                    one_x,one_y = event.pos
-                    print ('Detected')
-        if event.type == pygame.KEYDOWN:
-            if event.key ==  K_ESCAPE:
-                running = False
 
+        if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    if user_text > 9:
+                        print('ERROR!')
+                else:
+                    if event.key == pygame.K_0:
+                        user_text = (0)
+                    else:
+                        if event.key == K_1:
+                            user_text = (1)
+                        else: 
+                            if event.key == K_2:
+                                user_text = (2)
+                            else:
+                                if event.key == K_3:
+                                    user_text = (3)
+                                else:
+                                    if event.key == K_4:
+                                        user_text = (4)
+                                    else:
+                                        if event.key == K_5:
+                                            user_text = (5)
+                                        else:
+                                            if event.key == K_6:
+                                                user_text = (6)
+                                            else:
+                                                if event.key == K_7:
+                                                    user_text = (7)
+                                                else:
+                                                    if event.key == K_8:
+                                                        user_text = (8)
+                                                    else:
+                                                        if event.key == K_9:
+                                                            user_text = (9)
+                                                        else:    
+                                                            if event.key ==  K_ESCAPE:
+                                                                running = False
         screen.fill((255,255,255))
 
         title_surface = title_font.render(title,True,(0,0,0))
