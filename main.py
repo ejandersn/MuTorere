@@ -21,37 +21,48 @@ from pygame.locals import (
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 800
 
-x = 70
-y = 100
-
 board = pygame.image.load('guidestar.png')
-gp_one = pygame.image.load('realgreen.png')
-gp_two = pygame.image.load('realgreentwo.png')
-gp_three = pygame.image.load('realgreenthree.png')
-gp_four = pygame.image.load('realgreenfour.png')
 
-pos_one = 360,100
-pos_two = 530,165
-pos_three = 610,330
-pos_four = 535,510
-pos_five = 360,y
-pos_six = 175,y
-pos_seven = x,330
-pos_eight = 175,155
-pos_nine = x,y
+one_x,one_y = 360,100
+two_x,two_y = 530,165
+three_x,three_y = 610,330
+four_x,four_y = 535,510
+five_x,five_y = 360,600
+six_x,six_y = 175,510
+seven_x,seven_y = 105,330
+eight_x,eight_y = 175,155
+nine_x,nine_y = 360,330
+
+class Perepere(pygame.sprite.Sprite):
+    def __init__(self,image_file,location):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(image_file)
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
 
 pygame.init()
 
 screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])
 
 base_font = pygame.font.Font(None,32)
+
 user_text = int()
-input_rect = pygame.Rect(100,700,50,32)
 color = (0,0,0)
+input_rect = pygame.Rect(100,700,50,32)
 
 running = True
 while running:
     for event in pygame.event.get():
+        gp_one = Perepere('green_perepere.png',[one_x,one_y])
+        gp_two = Perepere('green_perepere.png', [two_x,two_y])
+        gp_three = Perepere('green_perepere.png',[three_x,three_y])
+        gp_four = Perepere('green_perepere.png', [four_x,four_y])
+
+        bp_one = Perepere('blue_perepere.png',[five_x,five_y])
+        bp_two = Perepere('blue_perepere.png',[six_x,six_y])
+        bp_three = Perepere('blue_perepere.png',[seven_x,seven_y])
+        bp_four = Perepere('blue_perepere.png',[eight_x,eight_y])
+
         if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     if user_text > 9:
@@ -97,10 +108,17 @@ while running:
         screen.blit(text_surface,(input_rect.x + 10,input_rect.y + 5))
 
         screen.blit(board,(125,100))
-        screen.blit(gp_one, (pos_one))
-        screen.blit(gp_two,(pos_two))
-        screen.blit(gp_three,(pos_three))
-        screen.blit(gp_four,(pos_four))
+
+        screen.blit(gp_one.image,gp_one.rect)
+        screen.blit(gp_two.image, gp_two.rect)
+        screen.blit(gp_three.image, gp_three.rect)
+        screen.blit(gp_four.image, gp_four.rect)
+
+        screen.blit(bp_one.image,bp_one.rect)
+        screen.blit(bp_two.image,bp_two.rect)
+        screen.blit(bp_three.image,bp_three.rect)
+        screen.blit(bp_four.image,bp_four.rect)
+
         pygame.display.flip()
 
 pygame.quit()
