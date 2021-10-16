@@ -44,6 +44,9 @@ pygame.init()
 
 screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])
 
+title_font = pygame.font.Font(None,50)
+title = "Mū Tōrere"
+
 base_font = pygame.font.Font(None,32)
 
 user_text = int()
@@ -101,6 +104,9 @@ while running:
                                                             if event.key ==  K_ESCAPE:
                                                                 running = False
         screen.fill((255,255,255))
+
+        title_surface = title_font.render(title,True,(0,0,0))
+        screen.blit(title_surface,(335,50))
 
         pygame.draw.rect(screen,color,input_rect,2 )
         user_string = str(user_text)
