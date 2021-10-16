@@ -47,34 +47,34 @@ while running:
                         print('ERROR!')
                 else:
                     if event.key == pygame.K_0:
-                        user_text += (0)
+                        user_text = (0)
                     else:
                         if event.key == K_1:
-                            user_text += (1)
+                            user_text = (1)
                         else: 
                             if event.key == K_2:
-                                user_text += (2)
+                                user_text = (2)
                             else:
                                 if event.key == K_3:
-                                    user_text += (3)
+                                    user_text = (3)
                                 else:
                                     if event.key == K_4:
-                                        user_text += (4)
+                                        user_text = (4)
                                     else:
                                         if event.key == K_5:
-                                            user_text += (5)
+                                            user_text = (5)
                                         else:
                                             if event.key == K_6:
-                                                user_text += (6)
+                                                user_text = (6)
                                             else:
                                                 if event.key == K_7:
-                                                    user_text += (7)
+                                                    user_text = (7)
                                                 else:
                                                     if event.key == K_8:
-                                                        user_text += (8)
+                                                        user_text = (8)
                                                     else:
                                                         if event.key == K_9:
-                                                            user_text += (9)
+                                                            user_text = (9)
 
             if event.key ==  K_ESCAPE:
                 running = False
