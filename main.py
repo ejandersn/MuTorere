@@ -21,9 +21,12 @@ from pygame.locals import (
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 800
 
-x = 50
+x = 370
 y = 100
 
+
+
+board = pygame.image.load('betterstar.png')
 greenPerepereOne = pygame.image.load('piece_one.png')
 
 pygame.init()
@@ -39,9 +42,6 @@ running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_BACKSPACE:
-                 user_text = user_text[:-1]
-            else:
                 if event.key == pygame.K_RETURN:
                     if user_text > 9:
                         print('ERROR!')
@@ -75,15 +75,16 @@ while running:
                                                     else:
                                                         if event.key == K_9:
                                                             user_text = (9)
-
-            if event.key ==  K_ESCAPE:
-                running = False
+                                                            
+        if event.key ==  K_ESCAPE:
+            running = False
         screen.fill((255,255,255))
-        screen.blit(greenPerepereOne, (x,y))
+        
         pygame.draw.rect(screen,color,input_rect,2 )
-        this = str(user_text)
-
-        text_surface = base_font.render(this,True,(0,0,0))
+        user_string = str(user_text)
+        screen.blit(board,(125,100))
+        screen.blit(greenPerepereOne, (x,y))
+        text_surface = base_font.render(user_string,True,(0,0,0))
         screen.blit(text_surface,(input_rect.x + 10,input_rect.y + 5))
         pygame.display.flip()
 
