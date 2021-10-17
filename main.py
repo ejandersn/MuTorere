@@ -25,7 +25,7 @@ SCREEN_HEIGHT = 800
 
 board = pygame.image.load('guidestar.png')
 
-position = int()
+
 
 #Position Locations 
 one_x,one_y = 360,100
@@ -48,50 +48,51 @@ bp_two_x,bp_two_y = 175,510
 bp_three_x,bp_three_y = 105,330
 bp_four_x,bp_four_y = 175,155  
 
+pos = int()
+
+
+
 class Perepere(pygame.sprite.Sprite):
-    pos = int()
+    
     def __init__(self,image_file,location):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
     
-    def where(self,pos):
+    def find_where(self,pos):
+        global position
+        position = int()
         if pos == ((one_x,one_y)):
             position = 1
-            print(position)
-        else:
-            if pos == ((two_x,two_y)):
-                position = 2
-                print(position)
-            else:
-                if pos == ((three_x,three_y)):
-                    position = 3
-                    print(position)
-                else:
-                    if pos == ((four_x,four_y)):
-                        position = 4
-                        print(position)
-                    else:
-                        if pos == ((five_x,five_y)):
-                            position = 5
-                            print(position)
-                        else:
-                            if pos == ((six_x,six_y)):
-                                position = 6
-                                print(position)
-                            else:
-                                if pos == ((seven_x,seven_y)):
-                                    position = 7
-                                    print(position)
-                                else:
-                                    if pos == ((eight_x,eight_y)):
-                                        position = 8
-                                        print(position)
-                                    else:
-                                        if pos == ((nine_x, nine_y)):
-                                            position = 9
-                                            print(position)
+            return position
+        elif pos == ((two_x,two_y)):
+            position = 2
+            return position
+        elif pos == ((three_x,three_y)):
+            position = 3
+            return position
+        elif pos == ((four_x,four_y)):
+            position = 4
+            return position
+        elif pos == ((five_x,five_y)):
+            position = 5
+            return position
+        elif pos == ((six_x,six_y)):
+            position = 6
+            return position
+        elif pos == ((seven_x,seven_y)):
+            position = 7
+            return position
+        elif pos == ((eight_x,eight_y)):
+            position = 8
+            return position
+        elif pos == ((nine_x, nine_y)):
+            position = 9
+            return position
+
+
+
 
 class Position(pygame.sprite.Sprite):
     def __init__(self,image_file,location):
@@ -142,28 +143,52 @@ while running:
        
         if event.type == pygame.MOUSEBUTTONDOWN:
             if gp_one.rect.collidepoint(event.pos): 
-                gp_one.where((gp_one_x,gp_one_y))
-                move_piece = 1 
+                move_piece = 1
+                gp_one.find_where((gp_one_x,gp_one_y))
+                tahi_pos = position
+                print(tahi_pos)
+                gp_two.find_where((gp_two_x,gp_two_y))
+                rua_pos = position
+                print(rua_pos)
+                gp_three.find_where((gp_three_x,gp_three_y))
+                toru_pos = position
+                print(toru_pos)
+                gp_four.find_where((gp_four_x,gp_four_y))
+                wha_pos = position
+                print(wha_pos)
+                bp_one.find_where((bp_one_x,bp_one_y))
+                rima_pos = position
+                print(rima_pos)
+                bp_two.find_where((bp_two_x,bp_two_y))
+                ono_pos = position
+                print(ono_pos)
+                bp_three.find_where((bp_three_x,bp_three_y))
+                whito_pos = position
+                print(whito_pos)
+                bp_four.find_where((bp_four_x,bp_four_y))
+                waru_pos = position
+                print(waru_pos)
+
             if gp_two.rect.collidepoint(event.pos):
-                gp_two.where((gp_two_x,gp_two_y))
+                gp_two.find_where((gp_two_x,gp_two_y))
                 move_piece = 2
             if gp_three.rect.collidepoint(event.pos):
-                gp_three.where((gp_three_x,gp_three_y))
+                gp_three.find_where((gp_three_x,gp_three_y))
                 move_piece = 3
             if gp_four.rect.collidepoint(event.pos):
-                gp_four.where((gp_four_x,gp_four_y))
+                gp_four.find_where((gp_four_x,gp_four_y))
                 move_piece = 4
             if bp_one.rect.collidepoint(event.pos):
-                bp_one.where((bp_one_x,bp_one_y))
+                bp_one.find_where((bp_one_x,bp_one_y))
                 move_piece = 5
             if bp_two.rect.collidepoint(event.pos):
-                bp_two.where((bp_two_x,bp_two_y))
+                bp_two.find_where((bp_two_x,bp_two_y))
                 move_piece = 6
             if bp_three.rect.collidepoint(event.pos):
-                bp_three.where((bp_three_x,bp_three_y))
+                bp_three.find_where((bp_three_x,bp_three_y))
                 move_piece = 7
             if bp_four.rect.collidepoint(event.pos):
-                bp_four.where((bp_four_x,bp_four_y))
+                bp_four.find_where((bp_four_x,bp_four_y))
                 move_piece = 8
         
         if event.type == pygame.KEYDOWN:
