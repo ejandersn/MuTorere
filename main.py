@@ -1,4 +1,5 @@
 import pygame
+from pygame.fastevent import init
 from pygame.locals import (
     K_ESCAPE,
     QUIT,
@@ -24,6 +25,9 @@ SCREEN_HEIGHT = 800
 
 board = pygame.image.load('guidestar.png')
 
+position = int()
+
+#Position Locations 
 one_x,one_y = 360,100
 two_x,two_y = 530,165
 three_x,three_y = 610,330
@@ -34,14 +38,68 @@ seven_x,seven_y = 105,330
 eight_x,eight_y = 175,155
 nine_x,nine_y = 360,330
 
+#Perepere Locations
+gp_one_x,gp_one_y = 360,100
+gp_two_x,gp_two_y = 530,165
+gp_three_x,gp_three_y = 610,330
+gp_four_x,gp_four_y = 535,510
+bp_one_x,bp_one_y = 360,600
+bp_two_x,bp_two_y = 175,510
+bp_three_x,bp_three_y = 105,330
+bp_four_x,bp_four_y = 175,155  
+
 class Perepere(pygame.sprite.Sprite):
+    pos = int()
     def __init__(self,image_file,location):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
+    
+    def where(self,pos):
+        if pos == ((one_x,one_y)):
+            position = 1
+            print(position)
+        else:
+            if pos == ((two_x,two_y)):
+                position = 2
+                print(position)
+            else:
+                if pos == ((three_x,three_y)):
+                    position = 3
+                    print(position)
+                else:
+                    if pos == ((four_x,four_y)):
+                        position = 4
+                        print(position)
+                    else:
+                        if pos == ((five_x,five_y)):
+                            position = 5
+                            print(position)
+                        else:
+                            if pos == ((six_x,six_y)):
+                                position = 6
+                                print(position)
+                            else:
+                                if pos == ((seven_x,seven_y)):
+                                    position = 7
+                                    print(position)
+                                else:
+                                    if pos == ((eight_x,eight_y)):
+                                        position = 8
+                                        print(position)
+                                    else:
+                                        if pos == ((nine_x, nine_y)):
+                                            position = 9
+                                            print(position)
 
-
+class Position(pygame.sprite.Sprite):
+    def __init__(self,image_file,location):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(image_file)
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
+    
 pygame.init()
 
 screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])
@@ -58,35 +116,75 @@ input_rect = pygame.Rect(100,700,50,32)
 running = True
 while running:
     for event in pygame.event.get():
-        gp_one = Perepere('green_perepere.png',[one_x,one_y])
-        gp_two = Perepere('green_perepere.png', [two_x,two_y])
-        gp_three = Perepere('green_perepere.png',[three_x,three_y])
-        gp_four = Perepere('green_perepere.png', [four_x,four_y])
 
-        bp_one = Perepere('blue_perepere.png',[five_x,five_y])
-        bp_two = Perepere('blue_perepere.png',[six_x,six_y])
-        bp_three = Perepere('blue_perepere.png',[seven_x,seven_y])
-        bp_four = Perepere('blue_perepere.png',[eight_x,eight_y])
-      
+        pos_one = Position('semitransparrent_position.png',[one_x,one_y])
+        pos_two = Position('semitransparrent_position.png',[two_x,two_y])
+        pos_three = Position('semitransparrent_position.png',[three_x,three_y])
+        pos_four = Position('semitransparrent_position.png',[four_x,four_y])
+        pos_five = Position('semitransparrent_position.png',[five_x,five_y])
+        pos_six = Position('semitransparrent_position.png', [six_x,six_y])
+        pos_seven = Position('semitransparrent_position.png',[seven_x,seven_y])
+        pos_eight = Position('semitransparrent_position.png',[eight_x,eight_y])
+        pos_nine = Position('semitransparrent_position.png', [nine_x,nine_y])
+
+        gp_one = Perepere('green_perepere.png',[gp_one_x,gp_one_y])
+        gp_two = Perepere('green_perepere.png', [gp_two_x,gp_two_y])
+        gp_three = Perepere('green_perepere.png',[gp_three_x,gp_three_y])
+        gp_four = Perepere('green_perepere.png', [gp_four_x,gp_four_y])
+
+        bp_one = Perepere('blue_perepere.png',[bp_one_x,bp_one_y])
+        bp_two = Perepere('blue_perepere.png',[bp_two_x,bp_two_y])
+        bp_three = Perepere('blue_perepere.png',[bp_three_x,bp_three_y])
+        bp_four = Perepere('blue_perepere.png',[bp_four_x,bp_four_y])
+
+        location = ()
+        piece = ()
+       
         if event.type == pygame.MOUSEBUTTONDOWN:
-                if gp_one.rect.collidepoint(event.pos): 
-                    one_x,one_y = event.pos
-                    print ('Detected')
+            if gp_one.rect.collidepoint(event.pos): 
+                gp_one.where((gp_one_x,gp_one_y))
+                move_piece = 1 
+            if gp_two.rect.collidepoint(event.pos):
+                gp_two.where((gp_two_x,gp_two_y))
+                move_piece = 2
+            if gp_three.rect.collidepoint(event.pos):
+                gp_three.where((gp_three_x,gp_three_y))
+                move_piece = 3
+            if gp_four.rect.collidepoint(event.pos):
+                gp_four.where((gp_four_x,gp_four_y))
+                move_piece = 4
+            if bp_one.rect.collidepoint(event.pos):
+                bp_one.where((bp_one_x,bp_one_y))
+                move_piece = 5
+            if bp_two.rect.collidepoint(event.pos):
+                bp_two.where((bp_two_x,bp_two_y))
+                move_piece = 6
+            if bp_three.rect.collidepoint(event.pos):
+                bp_three.where((bp_three_x,bp_three_y))
+                move_piece = 7
+            if bp_four.rect.collidepoint(event.pos):
+                bp_four.where((bp_four_x,bp_four_y))
+                move_piece = 8
+        
         if event.type == pygame.KEYDOWN:
             if event.key ==  K_ESCAPE:
                 running = False
+        
+        # if move_piece 
 
         screen.fill((255,255,255))
 
-        title_surface = title_font.render(title,True,(0,0,0))
-        screen.blit(title_surface,(335,50))
-
-        pygame.draw.rect(screen,color,input_rect,2 )
-        user_string = str(user_text)
-        text_surface = base_font.render(user_string,True,(0,0,0))
-        screen.blit(text_surface,(input_rect.x + 10,input_rect.y + 5))
-
         screen.blit(board,(125,100))
+
+        screen.blit(pos_one.image, pos_one.rect)
+        screen.blit(pos_two.image, pos_two.rect)
+        screen.blit(pos_three.image, pos_three.rect)
+        screen.blit(pos_four.image, pos_four.rect)
+        screen.blit(pos_five.image, pos_five.rect)
+        screen.blit(pos_six.image, pos_six.rect)
+        screen.blit(pos_seven.image, pos_seven.rect)
+        screen.blit(pos_eight.image, pos_eight.rect)
+        screen.blit(pos_nine.image, pos_nine.rect)
 
         screen.blit(gp_one.image,gp_one.rect)
         screen.blit(gp_two.image, gp_two.rect)
