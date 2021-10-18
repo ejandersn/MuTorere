@@ -47,8 +47,9 @@ bp_three_x,bp_three_y = 105,330
 bp_four_x,bp_four_y = 175,155  
 
 pos = int()
-INVALID = False
-VALID = True
+
+VALID = False
+
 
 class Perepere(pygame.sprite.Sprite):
     
@@ -59,42 +60,32 @@ class Perepere(pygame.sprite.Sprite):
         self.rect.left, self.rect.top = location
         global type
         type = image_file
-
-    def which_player(self):
-        global player
-        player = ()
-        if type == 'green_perepere.png':
-            player = 'green'
-            print(player) 
-        else:
-            player == 'blue'
-            print(player)
     
     def find_where(self,pos): #This finds where perepere are at
             global position
             position = int()
-            if pos == ((one_x,one_y)):
+            if pos == (one_x,one_y):
                 position = 1
                 return position
-            elif pos == ((two_x,two_y)):
+            elif pos == (two_x,two_y):
                 position = 2
                 return position
-            elif pos == ((three_x,three_y)):
+            elif pos == (three_x,three_y):
                 position = 3
                 return position
-            elif pos == ((four_x,four_y)):
+            elif pos == (four_x,four_y):
                 position = 4
                 return position
-            elif pos == ((five_x,five_y)):
+            elif pos == (five_x,five_y):
                 position = 5
                 return position
-            elif pos == ((six_x,six_y)):
+            elif pos == (six_x,six_y):
                 position = 6
                 return position
-            elif pos == ((seven_x,seven_y)):
+            elif pos == (seven_x,seven_y):
                 position = 7
                 return position
-            elif pos == ((eight_x,eight_y)):
+            elif pos == (eight_x,eight_y):
                 position = 8
                 return position
             elif pos == (nine_x, nine_y):
@@ -105,84 +96,45 @@ class game_logic():
 
     def find_all(self):     #This shows the specfic location in corralation with its respective piecessss  
             gp_one.find_where((gp_one_x,gp_one_y))
-            gp_one.which_player() 
-            if player == 'green':
-                tahi_type = 'green'
-            else:
-                tahi_type = 'blue'
+            tahi_type = 1
             global tahi_pos
             tahi_pos = position
-            print(tahi_pos)                             #all prints are tests
            
             gp_two.find_where((gp_two_x,gp_two_y))
-            gp_two.which_player()
-            if player == 'green':
-                rua_type = 'green'
-            else:
-                rua_type = 'blue'
+            rua_type = 1
             global rua_pos
             rua_pos = position
-            print(rua_pos)
             
             gp_three.find_where((gp_three_x,gp_three_y))
-            gp_three.which_player()
-            if player == 'green':
-                toru_type = 'green'
-            else:
-                toru_type ='blue'
+            toru_type = 1
             global toru_pos
             toru_pos = position
-            print(toru_pos)
-
+            
             gp_four.find_where((gp_four_x,gp_four_y))
-            gp_four.which_player()
-            if player == 'green':
-                wha_type = 'green'
-            else:
-                wha_type ='blue'
+            wha_type = 1
             global wha_pos
             wha_pos = position
-            print(wha_pos)
-
+           
             bp_one.find_where((bp_one_x,bp_one_y))
-            bp_one.which_player()
-            if player == 'green':
-                rima_type = 'green'
-            else:
-                rima_type ='blue'
+            ima_type = 2
             global rima_pos
             rima_pos = position
-            print(rima_pos)
-
+            
             bp_two.find_where((bp_two_x,bp_two_y))
-            bp_two.which_player()
-            if player == 'green':
-                ono = 'green'
-            else:
-                ono_type ='blue'
+            ono_type = 2
             global ono_pos
             ono_pos = position
-            print(ono_pos)
             
             bp_three.find_where((bp_three_x,bp_three_y))
-            bp_three.which_player()
-            if player == 'green':
-                whitu_type = 'green'
-            else:
-                whitu_type ='blue'
+            whitu_type = 2
             global whito_pos
             whito_pos = position
-            print(whito_pos)
 
             bp_four.find_where((bp_four_x,bp_four_y))
-            bp_four.which_player()
-            if player == 'green':
-                whitu_type = 'green'
-            else:
-                whitu_type ='blue'
+            whitu_type = 2
             global waru_pos
             waru_pos = position
-            print(waru_pos)
+            
     
     def start_move(self,start):
         global selected_piece
@@ -203,12 +155,12 @@ class game_logic():
         elif start == 8:
             selected_piece = waru_pos
 
+
     def find_available_position(self):
         global total
-        total = tahi_pos+rua_pos+toru_pos+wha_pos+rima_pos+ono_pos+whito_pos+waru_pos
         global move_to
-        print(total)
-        
+        total = tahi_pos+rua_pos+toru_pos+wha_pos+rima_pos+ono_pos+whito_pos+waru_pos
+
         if total == 36:
             global available_pos
             available_pos = 9
@@ -216,35 +168,53 @@ class game_logic():
 
         if total == 37:
             available_pos = 8
-            move_to = ((eight_x,eight_y))
+            move_to = eight_x,eight_y
 
         if total == 38:
             available_pos = 7
-            move_to = ((seven_x,seven_y))
+            move_to = seven_x,seven_y
 
         if total == 39:
             available_pos = 6
-            move_to = ((six_x,six_y))
+            move_to = six_x,six_y
 
         if total == 40:
             available_pos = 5
-            move_to = ((five_x,five_y))
+            move_to = five_x,five_y
 
         if total == 41:
             available_pos = 4
-            move_to = ((four_x,four_y))
+            move_to = four_x,four_y
 
         if total == 42:
             available_pos = 3
-            move_to = ((three_x,three_y))
+            move_to = three_x,three_y
 
         if total == 43:
             available_pos = 2
-            move_to = ((two_x,two_y))
+            move_to = two_x,two_y
 
         if total == 44:
             available_pos = 1
-            move_to = ((one_x,one_y))
+            move_to = one_x,one_y
+
+    def check_validity():
+        if available_pos == 1 and selected_piece == 2 or 8 or position == 9:
+            VALID = True
+        elif available_pos == 2 and selected_piece == 1 or 3 or position == 9:
+            VALID = True
+        elif available_pos == 3 and selected_piece == 2 or 4 or position == 9:
+            VALID = True
+        elif available_pos == 4 and selected_piece == 5 or 3 or position == 9:
+            VALID = True
+        elif available_pos == 5 and selected_piece == 4 or 6 or position == 9:
+            VALID = True
+        elif available_pos == 6 and selected_piece == 5 or 7 or position == 9:
+            VALID = True
+        elif available_pos == 7 and selected_piece == 6 or 8 or position == 9:
+            VALID = True
+        elif available_pos == 8 and selected_piece == 7 or 1 or position == 9:
+            VALID = True
 
 
 class Position(pygame.sprite.Sprite):
@@ -295,66 +265,56 @@ while running:
         move_piece = game_logic()
         logic = game_logic()
 
-       
         if event.type == pygame.MOUSEBUTTONDOWN:
+            
             if gp_one.rect.collidepoint(event.pos): 
                 location.find_all() #we have to constantly know where all pieces are otherwise we do not know where to go
                 move_piece.start_move(1)
-                print(selected_piece) #this is a test
                 logic.find_available_position()
                 gp_one_x,gp_one_y = move_to
 
             if gp_two.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(2)
-                print(selected_piece)
                 logic.find_available_position()
                 gp_two_x,gp_two_y = move_to
-
            
             if gp_three.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(3)
-                print(selected_piece)
                 logic.find_available_position()
                 gp_three_x,gp_three_y = move_to
                 
             if gp_four.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(4)
-                print(selected_piece)
                 logic.find_available_position()
                 gp_four_x,gp_four_y = move_to
 
             if bp_one.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(5)
-                print(selected_piece)
                 logic.find_available_position()
                 bp_one_x,bp_one_y = move_to
                 
             if bp_two.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(6)
-                print(selected_piece)
                 logic.find_available_position()
                 bp_two_x,bp_two_y = move_to
                 
             if bp_three.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(7)
-                print(selected_piece)
                 logic.find_available_position()
                 bp_three_x, bp_three_y = move_to
                 
             if bp_four.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(8)
-                print(selected_piece)
                 logic.find_available_position()
                 bp_four_x, bp_four_y = move_to
                 
-        
         if event.type == pygame.KEYDOWN:
             if event.key ==  K_ESCAPE:
                 running = False
