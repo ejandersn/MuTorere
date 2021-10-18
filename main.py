@@ -55,6 +55,7 @@ class Perepere(pygame.sprite.Sprite):
     def find_where(self,pos): #This finds where perepere are at
             global position
             position = int()
+
             if pos == (one_x,one_y):
                 position = 1
                 return position
@@ -86,42 +87,42 @@ class game_logic():
     def find_all(self):     #This shows the specfic location in corralation with its respective piecessss  
             gp_one.find_where((gp_one_x,gp_one_y))
             tahi_type = 1
-            global tahi_pos
-            tahi_pos = position
+            global one_pos
+            one_pos = position
            
             gp_two.find_where((gp_two_x,gp_two_y))
             rua_type = 1
-            global rua_pos
-            rua_pos = position
+            global two_pos
+            two_pos = position
             
             gp_three.find_where((gp_three_x,gp_three_y))
             toru_type = 1
-            global toru_pos
-            toru_pos = position
+            global three_pos
+            three_pos = position
             
             gp_four.find_where((gp_four_x,gp_four_y))
             wha_type = 1
-            global wha_pos
-            wha_pos = position
+            global four_pos
+            four_pos = position
            
             bp_one.find_where((bp_one_x,bp_one_y))
             ima_type = 2
-            global rima_pos
-            rima_pos = position
+            global five_pos
+            five_pos = position
             
             bp_two.find_where((bp_two_x,bp_two_y))
             ono_type = 2
-            global ono_pos
-            ono_pos = position
+            global six_pos
+            six_pos = position
             
             bp_three.find_where((bp_three_x,bp_three_y))
             whitu_type = 2
-            global whito_pos
-            whito_pos = position
+            global seven_pos
+            seven_pos = position
             bp_four.find_where((bp_four_x,bp_four_y))
             whitu_type = 2
-            global waru_pos
-            waru_pos = position
+            global eight_pos
+            eight_pos = position
 
             logic.find_available_position()
 
@@ -129,57 +130,195 @@ class game_logic():
     def start_move(self,start):
         global selected_piece
         if start == 1:                  #the integer values for start represent the piece itself
-            selected_piece = tahi_pos   #this says that the selected piece is the piece at this location
+            selected_piece = one_pos   #this says that the selected piece is the piece at this location
         elif start == 2:
-            selected_piece = rua_pos
+            selected_piece = two_pos
         elif start == 3:
-            selected_piece = toru_pos
+            selected_piece = three_pos
         elif start == 4:
-            selected_piece = wha_pos
+            selected_piece = four_pos
         elif start == 5:
-            selected_piece = rima_pos
+            selected_piece = five_pos
         elif start == 6:
-            selected_piece = ono_pos
+            selected_piece = six_pos
         elif start == 7:
-            selected_piece = whito_pos
+            selected_piece = seven_pos
         elif start == 8:
-            selected_piece = waru_pos
+            selected_piece = eight_pos
+
     def find_available_position(self):
         global total
-        global move_to
-        total = tahi_pos+rua_pos+toru_pos+wha_pos+rima_pos+ono_pos+whito_pos+waru_pos
+        
+        total = one_pos+two_pos+three_pos+four_pos+five_pos+six_pos+seven_pos+eight_pos
         if total == 36:
             global available_pos
             available_pos = 9
-            move_to = nine_x,nine_y
+    
         if total == 37:
             available_pos = 8
-            move_to = eight_x,eight_y
+           
         if total == 38:
             available_pos = 7
-            move_to = seven_x,seven_y
+          
         if total == 39:
             available_pos = 6
-            move_to = six_x,six_y
+         
         if total == 40:
             available_pos = 5
-            move_to = five_x,five_y
+          
         if total == 41:
             available_pos = 4
-            move_to = four_x,four_y
+          
         if total == 42:
             available_pos = 3
-            move_to = three_x,three_y
+            
         if total == 43:
             available_pos = 2
-            move_to = two_x,two_y
+          
         if total == 44:
             available_pos = 1
-            move_to = one_x,one_y
+            
 
 
-    def check_validity(self):
-        print('validity statements')
+    def check_neighbor(self):
+        print(available_pos, 'first')
+        if selected_piece != 8:
+            if selected_piece != 1:
+                if selected_piece == one_pos:
+                        print(selected_piece)
+                        if one_pos-1 == two_pos or one_pos-1 == three_pos or one_pos-1 ==four_pos:
+                            if one_pos+1 == two_pos or one_pos+1 == three_pos or one_pos+1 == four_pos:
+                                print('invalid')
+                if selected_piece == two_pos:
+                        print(selected_piece)
+                        if two_pos-1 == one_pos or two_pos-1 == three_pos or two_pos-1 == four_pos:
+                            if two_pos+1 == one_pos or two_pos+1 == three_pos or  two_pos+1 == four_pos:
+                                print('invalid')
+                if selected_piece == three_pos:
+                    print(selected_piece)
+                    if three_pos-1 == one_pos or three_pos-1 == two_pos or three_pos-1 == four_pos:
+                        if three_pos+1 == one_pos or three_pos+1 == two_pos or three_pos+1 == four_pos:
+                            print('invalid')
+                if selected_piece == four_pos:
+                    print(selected_piece)
+                    if four_pos-1 == one_pos or four_pos-1 == two_pos or four_pos-1 == three_pos:
+                        if three_pos+1 == one_pos or three_pos+1 == two_pos or three_pos+1 == three_pos:
+                            print('invalid')
+                if selected_piece == five_pos:
+                    print(selected_piece)
+                    if five_pos-1 == six_pos or five_pos-1 == seven_pos or five_pos-1 == eight_pos:
+                        if five_pos+1 == six_pos or five_pos+1 == seven_pos or five_pos+1 == eight_pos:
+                            print('invalid')
+                if selected_piece == six_pos:
+                    print(selected_piece)
+                    if six_pos-1 == five_pos or six_pos-1 == seven_pos or six_pos-1 == eight_pos:
+                        if six_pos+1 == five_pos or six_pos+1 == seven_pos or six_pos+1 == eight_pos:
+                            print('invalid')
+                if selected_piece == seven_pos:
+                    print (selected_piece)
+                    if seven_pos-1 == five_pos or seven_pos-1 == six_pos or seven_pos-1 == eight_pos:
+                        if seven_pos+1 == five_pos or seven_pos+1 == six_pos or seven_pos+1 == eight_pos:
+                            print('invalid')
+                if selected_piece == eight_pos:
+                    print(selected_piece)
+                    if eight_pos-1 == five_pos or eight_pos-1 == six_pos or eight_pos-1 == seven_pos:
+                        if eight_pos+1 == five_pos or eight_pos+1 == six_pos or eight_pos+1 == seven_pos:
+                            print('invalid')
+            else: 
+                if selected_piece == one_pos:
+                    print(selected_piece)
+                    if two_pos == 8 or three_pos == 8 or four_pos == 8:
+                        if two_pos == 2 or three_pos == 2 or four_pos == 2:
+                            print('invalid')
+                if selected_piece == two_pos:
+                    print(selected_piece)
+                    if one_pos == 8 or three_pos == 8 or four_pos == 8:
+                        if one_pos == 2 or three_pos == 2 or four_pos == 2:
+                            print('invalid')
+                if selected_piece == three_pos:
+                    print(selected_piece)
+                    if one_pos == 8 or two_pos ==  8 or four_pos == 8:
+                        if one_pos == 2 or two_pos == 8 or four_pos == 8:
+                                print('invalid')
+                if selected_piece == four_pos:
+                    print(selected_piece)
+                    if one_pos == 8 or two_pos == 8 or three_pos == 8:
+                        if one_pos == 2 or two_pos == 2 or three_pos == 2:
+                            print('invalid')
+                if selected_piece == five_pos:
+                    print (selected_piece)
+                    if six_pos == 8 or seven_pos == 8 or eight_pos == 8:
+                        if six_pos == 2 or seven_pos == 2 or eight_pos == 2:
+                            print('invalid')
+                if selected_piece == six_pos:
+                    print(selected_piece)
+                    if five_pos == 8 or seven_pos == 8 or eight_pos == 8:
+                        if five_pos == 2 or seven_pos == 2 or eight_pos == 2:
+                            print('invalid')
+                if selected_piece == seven_pos:
+                    print(selected_piece)
+                    if five_pos == 8 or six_pos == 8 or eight_pos == 8:
+                        if five_pos == 2 or six_pos == 2 or eight_pos == 2:
+                            print('invalid')
+                if selected_piece == eight_pos:
+                    print(selected_piece)
+                    if five_pos == 8 or six_pos == 8 or seven_pos == 8:
+                        if five_pos == 2 or six_pos == 2 or seven_pos == 2:
+                            print('invalid')
+
+        else:
+            if selected_piece == one_pos:
+                print(selected_piece)
+                if two_pos == 7 or three_pos == 7 or four_pos == 7:
+                    if two_pos == 1 or three_pos == 1 or four_pos == 1:
+                        print('invalid')
+            if selected_piece == two_pos:
+                print(selected_piece)
+                if one_pos == 7 or three_pos == 7 or four_pos == 7:
+                    if one_pos == 1 or three_pos == 1 or four_pos == 1:
+                        print('invalid')
+            if selected_piece == three_pos:
+                print(selected_piece)
+                if one_pos == 7 or two_pos ==  7 or four_pos == 7:
+                    if one_pos == 1 or two_pos == 1 or four_pos == 1:
+                            print('invalid')
+            if selected_piece == four_pos:
+                print(selected_piece)
+                if one_pos == 7 or two_pos == 7 or three_pos == 7:
+                    if one_pos == 1 or two_pos == 1 or three_pos == 1:
+                        print('invalid')
+            if selected_piece == five_pos:
+                print (selected_piece)
+                if six_pos == 7 or seven_pos == 7 or eight_pos == 7:
+                    if six_pos == 1 or seven_pos == 1 or eight_pos == 1:
+                        print('invalid')
+            if selected_piece == six_pos:
+                print(selected_piece)
+                if five_pos == 7 or seven_pos == 7 or eight_pos == 7:
+                    if five_pos == 1 or seven_pos == 7 or eight_pos == 1:
+                        print('invalid')
+            if selected_piece == seven_pos:
+                print(selected_piece)
+                if five_pos == 7 or six_pos == 7 or eight_pos == 7:
+                    if five_pos == 1 or six_pos == 1 or eight_pos == 1:
+                        print('invalid')
+            if selected_piece == eight_pos:
+                print(selected_piece)
+                if five_pos == 7 or six_pos == 7 or seven_pos == 7:
+                    if five_pos == 1 or six_pos == 1 or seven_pos == 1:
+                        print('invalid')
+            
+        global move_to
+        move_to = ()                
+        # match available_pos:
+        #     case 9:
+        #         print(selected_piece)
+        #         if selected_piece == 2 or 8:
+        #             global move_to
+        #             move_to = (nine_x, nine_y)
+        #             print('valid')
+
+
 
 
 
@@ -219,52 +358,68 @@ while running:
 
             if gp_one.rect.collidepoint(event.pos): 
                 location.find_all() #we have to constantly know where all pieces are otherwise we do not know where to go
-                location.find_all() #we have to constantly know where all pieces are otherwise we do not know where to go 
                 move_piece.start_move(1)
+                logic.check_neighbor()
+                
                 logic.find_available_position()
-                gp_one_x,gp_one_y = move_to
+                # gp_one_x,gp_one_y = move_to
 
             if gp_two.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(2)
+                logic.check_neighbor()
+                
                 logic.find_available_position()
-                gp_two_x,gp_two_y = move_to
+                # gp_two_x,gp_two_y = move_to
 
             if gp_three.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(3)
+                logic.check_neighbor()
+                
                 logic.find_available_position()
-                gp_three_x,gp_three_y = move_to
+                # gp_three_x,gp_three_y = move_to
 
             if gp_four.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(4)
+                logic.check_neighbor()
+                
                 logic.find_available_position()
-                gp_four_x,gp_four_y = move_to
+                # gp_four_x,gp_four_y = move_to
 
             if bp_one.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(5)
+                logic.check_neighbor()
+                
                 logic.find_available_position()
-                bp_one_x,bp_one_y = move_to
+                # bp_one_x,bp_one_y = move_to
 
             if bp_two.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(6)
+                logic.check_neighbor()
+                
                 logic.find_available_position()
-                bp_two_x,bp_two_y = move_to
+                # bp_two_x,bp_two_y = move_to
 
             if bp_three.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(7)
+                logic.check_neighbor()
+                
                 logic.find_available_position()
-                bp_three_x, bp_three_y = move_to
+                # bp_three_x, bp_three_y = move_to
 
             if bp_four.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(8)
+                
+                logic.check_neighbor()
+                
                 logic.find_available_position()
-                bp_four_x, bp_four_y = move_to
+                # bp_four_x, bp_four_y = move_to
 
         if event.type == pygame.KEYDOWN:
             if event.key ==  K_ESCAPE:
