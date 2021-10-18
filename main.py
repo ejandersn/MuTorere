@@ -134,6 +134,8 @@ class game_logic():
             whitu_type = 2
             global waru_pos
             waru_pos = position
+
+            logic.find_available_position()
             
     
     def start_move(self,start):
@@ -198,23 +200,25 @@ class game_logic():
             available_pos = 1
             move_to = one_x,one_y
 
-    def check_validity():
-        if available_pos == 1 and selected_piece == 2 or 8 or position == 9:
+    def check_validity(self):
+        if available_pos == 1: #and selected_piece == rua_pos or selected_piece == waru_pos or position == 9:
             VALID = True
-        elif available_pos == 2 and selected_piece == 1 or 3 or position == 9:
+            print('valid :)')
+        elif available_pos == 2 and selected_piece == tahi_pos or toru_pos or position == 9:
             VALID = True
-        elif available_pos == 3 and selected_piece == 2 or 4 or position == 9:
+        elif available_pos == 3 and selected_piece == rua_pos or wha_pos or position == 9:
             VALID = True
-        elif available_pos == 4 and selected_piece == 5 or 3 or position == 9:
+        elif available_pos == 4 and selected_piece == rima_pos or toru_pos or position == 9:
             VALID = True
-        elif available_pos == 5 and selected_piece == 4 or 6 or position == 9:
+        elif available_pos == 5 and selected_piece == wha_pos or ono_pos or position == 9:
             VALID = True
-        elif available_pos == 6 and selected_piece == 5 or 7 or position == 9:
+        elif available_pos == 6 and selected_piece == rima_pos or whito_pos or position == 9:
             VALID = True
-        elif available_pos == 7 and selected_piece == 6 or 8 or position == 9:
+        elif available_pos == 7 and selected_piece == ono_pos or waru_pos or position == 9:
             VALID = True
-        elif available_pos == 8 and selected_piece == 7 or 1 or position == 9:
+        elif available_pos == 8 and selected_piece == whito_pos or tahi_pos or position == 9:
             VALID = True
+        
 
 
 class Position(pygame.sprite.Sprite):
@@ -268,51 +272,43 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             
             if gp_one.rect.collidepoint(event.pos): 
-                location.find_all() #we have to constantly know where all pieces are otherwise we do not know where to go
+                location.find_all() #we have to constantly know where all pieces are otherwise we do not know where to go 
                 move_piece.start_move(1)
-                logic.find_available_position()
                 gp_one_x,gp_one_y = move_to
 
             if gp_two.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(2)
-                logic.find_available_position()
                 gp_two_x,gp_two_y = move_to
            
             if gp_three.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(3)
-                logic.find_available_position()
                 gp_three_x,gp_three_y = move_to
                 
             if gp_four.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(4)
-                logic.find_available_position()
                 gp_four_x,gp_four_y = move_to
 
             if bp_one.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(5)
-                logic.find_available_position()
                 bp_one_x,bp_one_y = move_to
                 
             if bp_two.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(6)
-                logic.find_available_position()
                 bp_two_x,bp_two_y = move_to
                 
             if bp_three.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(7)
-                logic.find_available_position()
                 bp_three_x, bp_three_y = move_to
                 
             if bp_four.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(8)
-                logic.find_available_position()
                 bp_four_x, bp_four_y = move_to
                 
         if event.type == pygame.KEYDOWN:
