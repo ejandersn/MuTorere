@@ -4,26 +4,14 @@ from pygame.locals import (
     K_ESCAPE,
     QUIT,
     KEYDOWN,
-    K_BACKSPACE,
-    K_RETURN,
     MOUSEBUTTONDOWN,
-    K_0,
-    K_1,
-    K_2,
-    K_3,
-    K_4,
-    K_5,
-    K_6,
-    K_7,
-    K_8,
-    K_9
 
 )
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 800
 
-board = pygame.image.load('guidestar.png')
+
 
 #Position Locations 
 one_x,one_y = 360,100
@@ -48,9 +36,6 @@ bp_four_x,bp_four_y = 175,155
 
 pos = int()
 
-VALID = False
-
-
 class Perepere(pygame.sprite.Sprite):
     
     def __init__(self,image_file,location):
@@ -58,175 +43,123 @@ class Perepere(pygame.sprite.Sprite):
         self.image = pygame.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
-        global type
-        type = image_file
+       
     
-    def find_where(self,pos): #This finds where perepere are at
-            global position
-            position = int()
-            if pos == (one_x,one_y):
-                position = 1
-                return position
-            elif pos == (two_x,two_y):
-                position = 2
-                return position
-            elif pos == (three_x,three_y):
-                position = 3
-                return position
-            elif pos == (four_x,four_y):
-                position = 4
-                return position
-            elif pos == (five_x,five_y):
-                position = 5
-                return position
-            elif pos == (six_x,six_y):
-                position = 6
-                return position
-            elif pos == (seven_x,seven_y):
-                position = 7
-                return position
-            elif pos == (eight_x,eight_y):
-                position = 8
-                return position
-            elif pos == (nine_x, nine_y):
-                position = 9
-                return position
+    def find_where(self, positon):
+        global piece_position
+        match pos:
+            case (one_x,one_y):
+                piece_position = 1
+                return piece_position
+            case (two_x,two_y):
+                piece_position = 2
+                return piece_position
+            case (three_x,three_y):
+                piece_position = 3
+                return piece_position
+            case (four_x,four_y):
+                piece_position = 4
+                return piece_position
+            case (five_x,five_y):
+                piece_position = 5
+                return piece_position
+            case (six_x,six_y):
+                piece_position = 6
+                return piece_position
+            case (seven_x,seven_y):
+                piece_position = 7
+                return piece_position
+            case (eight_x,eight_y):
+                piece_position = 8
+                return piece_position
 
-class game_logic():
+    def find_available_position(self):
+        global total
+        global move_request
+        total = one_pos+two_pos+three_pos+four_pos+five_pos+six_pos+seven_pos+eight_pos
 
-    def find_all(self):     #This shows the specfic location in corralation with its respective piecessss  
-            gp_one.find_where((gp_one_x,gp_one_y))
-            tahi_type = 1
-            global tahi_pos
-            tahi_pos = position
-           
-            gp_two.find_where((gp_two_x,gp_two_y))
-            rua_type = 1
-            global rua_pos
-            rua_pos = position
+        if total == 36:
+            global available_pos
+            available_pos = 9
             
-            gp_three.find_where((gp_three_x,gp_three_y))
-            toru_type = 1
-            global toru_pos
-            toru_pos = position
-            
-            gp_four.find_where((gp_four_x,gp_four_y))
-            wha_type = 1
-            global wha_pos
-            wha_pos = position
-           
-            bp_one.find_where((bp_one_x,bp_one_y))
-            ima_type = 2
-            global rima_pos
-            rima_pos = position
-            
-            bp_two.find_where((bp_two_x,bp_two_y))
-            ono_type = 2
-            global ono_pos
-            ono_pos = position
-            
-            bp_three.find_where((bp_three_x,bp_three_y))
-            whitu_type = 2
-            global whito_pos
-            whito_pos = position
+        if total == 37:
+            available_pos = 8  
 
-            bp_four.find_where((bp_four_x,bp_four_y))
-            whitu_type = 2
-            global waru_pos
-            waru_pos = position
+        if total == 38:
+            available_pos = 7    
 
-            logic.find_available_position()
+        if total == 39:
+            available_pos = 6
+            
+        if total == 40:
+            available_pos = 5
+            
+        if total == 41:
+            available_pos = 4
+            
+        if total == 42:
+            available_pos = 3
+            
+        if total == 43:
+            available_pos = 2
+            
+        if total == 44:
+            available_pos = 1
+
+class Positions ():
+    def set_position(self):
+        gp_one.find_where(gp_one_x,gp_one_y)
+        global one_pos
+        one_pos = piece_position
+            
+        gp_two.find_where((gp_two_x,gp_two_y))
+        global two_pos
+        two_pos = piece_position
+                
+        gp_three.find_where((gp_three_x,gp_three_y))
+        global three_pos
+        three_pos = piece_position
+                
+        gp_four.find_where((gp_four_x,gp_four_y))
+        global four_pos
+        four_pos = piece_position
+            
+        bp_one.find_where((bp_one_x,bp_one_y))
+        global five_pos
+        five_pos = piece_position
+                
+        bp_two.find_where((bp_two_x,bp_two_y))
+        global six_pos
+        six_pos = piece_position
+                
+        bp_three.find_where((bp_three_x,bp_three_y))
+        global seven_pos
+        seven_pos = piece_position
+
+        bp_four.find_where((bp_four_x,bp_four_y))
+        global eight_pos
+        eight_pos = piece_position
             
     
     def start_move(self,start):
         global selected_piece
         if start == 1:                  #the integer values for start represent the piece itself
-            selected_piece = tahi_pos   #this says that the selected piece is the piece at this location
+            selected_piece = one_pos   #this says that the selected piece is the piece at this location   
         elif start == 2:
-            selected_piece = rua_pos
+            selected_piece = two_pos 
         elif start == 3:
-            selected_piece = toru_pos
+            selected_piece = three_pos   
         elif start == 4:
-            selected_piece = wha_pos
+            selected_piece = four_pos
         elif start == 5:
-            selected_piece = rima_pos
+            selected_piece = five_pos     
         elif start == 6:
-            selected_piece = ono_pos
+            selected_piece = six_pos    
         elif start == 7:
-            selected_piece = whito_pos
+            selected_piece = seven_pos 
         elif start == 8:
-            selected_piece = waru_pos
-
-
-    def find_available_position(self):
-        global total
-        global move_to
-        total = tahi_pos+rua_pos+toru_pos+wha_pos+rima_pos+ono_pos+whito_pos+waru_pos
-
-        if total == 36:
-            global available_pos
-            available_pos = 9
-            move_to = nine_x,nine_y
-
-        if total == 37:
-            available_pos = 8
-            move_to = eight_x,eight_y
-
-        if total == 38:
-            available_pos = 7
-            move_to = seven_x,seven_y
-
-        if total == 39:
-            available_pos = 6
-            move_to = six_x,six_y
-
-        if total == 40:
-            available_pos = 5
-            move_to = five_x,five_y
-
-        if total == 41:
-            available_pos = 4
-            move_to = four_x,four_y
-
-        if total == 42:
-            available_pos = 3
-            move_to = three_x,three_y
-
-        if total == 43:
-            available_pos = 2
-            move_to = two_x,two_y
-
-        if total == 44:
-            available_pos = 1
-            move_to = one_x,one_y
-
-    def check_validity(self):
-        if available_pos == 1: #and selected_piece == rua_pos or selected_piece == waru_pos or position == 9:
-            VALID = True
-            print('valid :)')
-        elif available_pos == 2 and selected_piece == tahi_pos or toru_pos or position == 9:
-            VALID = True
-        elif available_pos == 3 and selected_piece == rua_pos or wha_pos or position == 9:
-            VALID = True
-        elif available_pos == 4 and selected_piece == rima_pos or toru_pos or position == 9:
-            VALID = True
-        elif available_pos == 5 and selected_piece == wha_pos or ono_pos or position == 9:
-            VALID = True
-        elif available_pos == 6 and selected_piece == rima_pos or whito_pos or position == 9:
-            VALID = True
-        elif available_pos == 7 and selected_piece == ono_pos or waru_pos or position == 9:
-            VALID = True
-        elif available_pos == 8 and selected_piece == whito_pos or tahi_pos or position == 9:
-            VALID = True
-        
-
-
-class Position(pygame.sprite.Sprite):
-    def __init__(self,image_file,location):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(image_file)
-        self.rect = self.image.get_rect()
-        self.rect.left, self.rect.top = location
+            selected_piece = eight_pos
+            
     
 pygame.init()
 
@@ -237,23 +170,10 @@ title = "Mū Tōrere"
 
 base_font = pygame.font.Font(None,32)
 
-user_text = int()
-color = (0,0,0)
-input_rect = pygame.Rect(100,700,50,32)
 
 running = True
 while running:
     for event in pygame.event.get():
-
-        pos_one = Position('transparrent_position.png',[one_x,one_y])
-        pos_two = Position('transparrent_position.png',[two_x,two_y])
-        pos_three = Position('transparrent_position.png',[three_x,three_y])
-        pos_four = Position('transparrent_position.png',[four_x,four_y])
-        pos_five = Position('transparrent_position.png',[five_x,five_y])
-        pos_six = Position('transparrent_position.png', [six_x,six_y])
-        pos_seven = Position('transparrent_position.png',[seven_x,seven_y])
-        pos_eight = Position('transparrent_position.png',[eight_x,eight_y])
-        pos_nine = Position('transparrent_position.png', [nine_x,nine_y])
 
         gp_one = Perepere('green_perepere.png',[gp_one_x,gp_one_y])
         gp_two = Perepere('green_perepere.png', [gp_two_x,gp_two_y])
@@ -265,51 +185,42 @@ while running:
         bp_three = Perepere('blue_perepere.png',[bp_three_x,bp_three_y])
         bp_four = Perepere('blue_perepere.png',[bp_four_x,bp_four_y])
 
-        location = game_logic()
-        move_piece = game_logic()
-        logic = game_logic()
+        board = pygame.image.load('guidestar.png')
+
+
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             
-            if gp_one.rect.collidepoint(event.pos): 
-                location.find_all() #we have to constantly know where all pieces are otherwise we do not know where to go 
-                move_piece.start_move(1)
-                gp_one_x,gp_one_y = move_to
+            if gp_one.rect.collidepoint(event.pos):
+                print()
+
 
             if gp_two.rect.collidepoint(event.pos):
-                location.find_all()
-                move_piece.start_move(2)
-                gp_two_x,gp_two_y = move_to
+                print()
+
            
             if gp_three.rect.collidepoint(event.pos):
-                location.find_all()
-                move_piece.start_move(3)
-                gp_three_x,gp_three_y = move_to
+                print()
+
                 
             if gp_four.rect.collidepoint(event.pos):
-                location.find_all()
-                move_piece.start_move(4)
-                gp_four_x,gp_four_y = move_to
+                print()
+
 
             if bp_one.rect.collidepoint(event.pos):
-                location.find_all()
-                move_piece.start_move(5)
-                bp_one_x,bp_one_y = move_to
+                print()
                 
             if bp_two.rect.collidepoint(event.pos):
-                location.find_all()
-                move_piece.start_move(6)
-                bp_two_x,bp_two_y = move_to
+                print()
+
                 
             if bp_three.rect.collidepoint(event.pos):
-                location.find_all()
-                move_piece.start_move(7)
-                bp_three_x, bp_three_y = move_to
+                print()
+
                 
             if bp_four.rect.collidepoint(event.pos):
-                location.find_all()
-                move_piece.start_move(8)
-                bp_four_x, bp_four_y = move_to
+                print()
+
                 
         if event.type == pygame.KEYDOWN:
             if event.key ==  K_ESCAPE:
@@ -322,16 +233,6 @@ while running:
         screen.blit(title_surface,(335,50))
 
         screen.blit(board,(125,100))
-
-        screen.blit(pos_one.image, pos_one.rect)
-        screen.blit(pos_two.image, pos_two.rect)
-        screen.blit(pos_three.image, pos_three.rect)
-        screen.blit(pos_four.image, pos_four.rect)
-        screen.blit(pos_five.image, pos_five.rect)
-        screen.blit(pos_six.image, pos_six.rect)
-        screen.blit(pos_seven.image, pos_seven.rect)
-        screen.blit(pos_eight.image, pos_eight.rect)
-        screen.blit(pos_nine.image, pos_nine.rect)
 
         screen.blit(gp_one.image,gp_one.rect)
         screen.blit(gp_two.image, gp_two.rect)
