@@ -25,14 +25,23 @@ eight_x,eight_y = 175,155
 nine_x,nine_y = 360,330
 
 #Perepere Locations
+# gp_one_x,gp_one_y = 360,100
+# gp_two_x,gp_two_y = 530,165
+# gp_three_x,gp_three_y = 610,330
+# gp_four_x,gp_four_y = 535,510
+# bp_one_x,bp_one_y = 360,600
+# bp_two_x,bp_two_y = 175,510
+# bp_three_x,bp_three_y = 105,330
+# bp_four_x,bp_four_y = 175,155  
+
 gp_one_x,gp_one_y = 360,100
 gp_two_x,gp_two_y = 530,165
-gp_three_x,gp_three_y = 610,330
+gp_three_x,gp_three_y = 360,600
 gp_four_x,gp_four_y = 535,510
 bp_one_x,bp_one_y = 360,600
 bp_two_x,bp_two_y = 175,510
 bp_three_x,bp_three_y = 105,330
-bp_four_x,bp_four_y = 175,155  
+bp_four_x,bp_four_y = 175,155 
 
 pos = int()
 
