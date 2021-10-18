@@ -25,8 +25,6 @@ SCREEN_HEIGHT = 800
 
 board = pygame.image.load('guidestar.png')
 
-
-
 #Position Locations 
 one_x,one_y = 360,100
 two_x,two_y = 530,165
@@ -49,8 +47,8 @@ bp_three_x,bp_three_y = 105,330
 bp_four_x,bp_four_y = 175,155  
 
 pos = int()
-
-
+INVALID = False
+VALID = True
 
 class Perepere(pygame.sprite.Sprite):
     
@@ -59,6 +57,18 @@ class Perepere(pygame.sprite.Sprite):
         self.image = pygame.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
+        global type
+        type = image_file
+
+    def which_player(self):
+        global player
+        player = ()
+        if type == 'green_perepere.png':
+            player = 'green'
+            print(player) 
+        else:
+            player == 'blue'
+            print(player)
     
     def find_where(self,pos): #This finds where perepere are at
             global position
@@ -87,42 +97,89 @@ class Perepere(pygame.sprite.Sprite):
             elif pos == ((eight_x,eight_y)):
                 position = 8
                 return position
-            elif pos == ((nine_x, nine_y)):
+            elif pos == (nine_x, nine_y):
                 position = 9
                 return position
 
 class game_logic():
 
-    def find_all(self):     #This shows the specfic location in corralation with its respective piecessss
+    def find_all(self):     #This shows the specfic location in corralation with its respective piecessss  
             gp_one.find_where((gp_one_x,gp_one_y))
+            gp_one.which_player() 
+            if player == 'green':
+                tahi_type = 'green'
+            else:
+                tahi_type = 'blue'
             global tahi_pos
             tahi_pos = position
             print(tahi_pos)                             #all prints are tests
+           
             gp_two.find_where((gp_two_x,gp_two_y))
+            gp_two.which_player()
+            if player == 'green':
+                rua_type = 'green'
+            else:
+                rua_type = 'blue'
             global rua_pos
             rua_pos = position
             print(rua_pos)
+            
             gp_three.find_where((gp_three_x,gp_three_y))
+            gp_three.which_player()
+            if player == 'green':
+                toru_type = 'green'
+            else:
+                toru_type ='blue'
             global toru_pos
             toru_pos = position
             print(toru_pos)
+
             gp_four.find_where((gp_four_x,gp_four_y))
+            gp_four.which_player()
+            if player == 'green':
+                wha_type = 'green'
+            else:
+                wha_type ='blue'
             global wha_pos
             wha_pos = position
             print(wha_pos)
+
             bp_one.find_where((bp_one_x,bp_one_y))
+            bp_one.which_player()
+            if player == 'green':
+                rima_type = 'green'
+            else:
+                rima_type ='blue'
             global rima_pos
             rima_pos = position
             print(rima_pos)
+
             bp_two.find_where((bp_two_x,bp_two_y))
+            bp_two.which_player()
+            if player == 'green':
+                ono = 'green'
+            else:
+                ono_type ='blue'
             global ono_pos
             ono_pos = position
             print(ono_pos)
+            
             bp_three.find_where((bp_three_x,bp_three_y))
+            bp_three.which_player()
+            if player == 'green':
+                whitu_type = 'green'
+            else:
+                whitu_type ='blue'
             global whito_pos
             whito_pos = position
             print(whito_pos)
+
             bp_four.find_where((bp_four_x,bp_four_y))
+            bp_four.which_player()
+            if player == 'green':
+                whitu_type = 'green'
+            else:
+                whitu_type ='blue'
             global waru_pos
             waru_pos = position
             print(waru_pos)
@@ -146,29 +203,48 @@ class game_logic():
         elif start == 8:
             selected_piece = waru_pos
 
-    def find_available_move(self):
+    def find_available_position(self):
         global total
         total = tahi_pos+rua_pos+toru_pos+wha_pos+rima_pos+ono_pos+whito_pos+waru_pos
+        global move_to
         print(total)
+        
         if total == 36:
-            move_to = ((nine_x,nine_y))
-        if total == 37:
-            move_to = ((eight_x,eight_y))
-        if total == 38:
-            move_to = ((seven_x,seven_y))
-        if total == 39:
-            move_to = ((six_x,six_y))
-        if total == 40:
-            move_to = ((five_x,five_y))
-        if total == 41:
-            move_to = ((four_x,four_y))
-        if total == 42:
-            move_to = ((three_x,three_y))
-        if total == 43:
-            move_to = ((two_x,two_y))
-        if total == 44:
-            move_to = ((one_x,one_y))
+            global available_pos
+            available_pos = 9
+            move_to = nine_x,nine_y
 
+        if total == 37:
+            available_pos = 8
+            move_to = ((eight_x,eight_y))
+
+        if total == 38:
+            available_pos = 7
+            move_to = ((seven_x,seven_y))
+
+        if total == 39:
+            available_pos = 6
+            move_to = ((six_x,six_y))
+
+        if total == 40:
+            available_pos = 5
+            move_to = ((five_x,five_y))
+
+        if total == 41:
+            available_pos = 4
+            move_to = ((four_x,four_y))
+
+        if total == 42:
+            available_pos = 3
+            move_to = ((three_x,three_y))
+
+        if total == 43:
+            available_pos = 2
+            move_to = ((two_x,two_y))
+
+        if total == 44:
+            available_pos = 1
+            move_to = ((one_x,one_y))
 
 
 class Position(pygame.sprite.Sprite):
@@ -195,15 +271,15 @@ running = True
 while running:
     for event in pygame.event.get():
 
-        pos_one = Position('semitransparrent_position.png',[one_x,one_y])
-        pos_two = Position('semitransparrent_position.png',[two_x,two_y])
-        pos_three = Position('semitransparrent_position.png',[three_x,three_y])
-        pos_four = Position('semitransparrent_position.png',[four_x,four_y])
-        pos_five = Position('semitransparrent_position.png',[five_x,five_y])
-        pos_six = Position('semitransparrent_position.png', [six_x,six_y])
-        pos_seven = Position('semitransparrent_position.png',[seven_x,seven_y])
-        pos_eight = Position('semitransparrent_position.png',[eight_x,eight_y])
-        pos_nine = Position('semitransparrent_position.png', [nine_x,nine_y])
+        pos_one = Position('transparrent_position.png',[one_x,one_y])
+        pos_two = Position('transparrent_position.png',[two_x,two_y])
+        pos_three = Position('transparrent_position.png',[three_x,three_y])
+        pos_four = Position('transparrent_position.png',[four_x,four_y])
+        pos_five = Position('transparrent_position.png',[five_x,five_y])
+        pos_six = Position('transparrent_position.png', [six_x,six_y])
+        pos_seven = Position('transparrent_position.png',[seven_x,seven_y])
+        pos_eight = Position('transparrent_position.png',[eight_x,eight_y])
+        pos_nine = Position('transparrent_position.png', [nine_x,nine_y])
 
         gp_one = Perepere('green_perepere.png',[gp_one_x,gp_one_y])
         gp_two = Perepere('green_perepere.png', [gp_two_x,gp_two_y])
@@ -225,49 +301,58 @@ while running:
                 location.find_all() #we have to constantly know where all pieces are otherwise we do not know where to go
                 move_piece.start_move(1)
                 print(selected_piece) #this is a test
-                logic.find_available_move()
+                logic.find_available_position()
+                gp_one_x,gp_one_y = move_to
 
             if gp_two.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(2)
                 print(selected_piece)
-                logic.find_available_move()
+                logic.find_available_position()
+                gp_two_x,gp_two_y = move_to
+
            
             if gp_three.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(3)
                 print(selected_piece)
-                logic.find_available_move()
+                logic.find_available_position()
+                gp_three_x,gp_three_y = move_to
                 
             if gp_four.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(4)
                 print(selected_piece)
-                logic.find_available_move()
+                logic.find_available_position()
+                gp_four_x,gp_four_y = move_to
 
             if bp_one.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(5)
                 print(selected_piece)
-                logic.find_available_move()
+                logic.find_available_position()
+                bp_one_x,bp_one_y = move_to
                 
             if bp_two.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(6)
                 print(selected_piece)
-                logic.find_available_move()
+                logic.find_available_position()
+                bp_two_x,bp_two_y = move_to
                 
             if bp_three.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(7)
                 print(selected_piece)
-                logic.find_available_move()
+                logic.find_available_position()
+                bp_three_x, bp_three_y = move_to
                 
             if bp_four.rect.collidepoint(event.pos):
                 location.find_all()
                 move_piece.start_move(8)
                 print(selected_piece)
-                logic.find_available_move()
+                logic.find_available_position()
+                bp_four_x, bp_four_y = move_to
                 
         
         if event.type == pygame.KEYDOWN:
@@ -276,6 +361,9 @@ while running:
         
 
         screen.fill((255,255,255))
+
+        title_surface = title_font.render(title,True,(0,0,0))
+        screen.blit(title_surface,(335,50))
 
         screen.blit(board,(125,100))
 
