@@ -43,9 +43,10 @@ class Perepere(pygame.sprite.Sprite):
         self.image = pygame.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
-       
+
+class gameLogic():
     
-    def find_where(self, positon):
+    def find_where(self):
         global piece_position
         match pos:
             case (one_x,one_y):
@@ -72,6 +73,39 @@ class Perepere(pygame.sprite.Sprite):
             case (eight_x,eight_y):
                 piece_position = 8
                 return piece_position
+    
+    def set_position(self):
+        gp_one.find_where(gp_one_x,gp_one_y)
+        global one_pos
+        one_pos = piece_position
+            
+        gp_two.find_where((gp_two_x,gp_two_y))
+        global two_pos
+        two_pos = piece_position
+                
+        gp_three.find_where((gp_three_x,gp_three_y))
+        global three_pos
+        three_pos = piece_position
+                
+        gp_four.find_where((gp_four_x,gp_four_y))
+        global four_pos
+        four_pos = piece_position
+            
+        bp_one.find_where((bp_one_x,bp_one_y))
+        global five_pos
+        five_pos = piece_position
+                
+        bp_two.find_where((bp_two_x,bp_two_y))
+        global six_pos
+        six_pos = piece_position
+                
+        bp_three.find_where((bp_three_x,bp_three_y))
+        global seven_pos
+        seven_pos = piece_position
+
+        bp_four.find_where((bp_four_x,bp_four_y))
+        global eight_pos
+        eight_pos = piece_position
 
     def find_available_position(self):
         global total
@@ -105,42 +139,7 @@ class Perepere(pygame.sprite.Sprite):
             
         if total == 44:
             available_pos = 1
-
-class Positions ():
-    def set_position(self):
-        gp_one.find_where(gp_one_x,gp_one_y)
-        global one_pos
-        one_pos = piece_position
             
-        gp_two.find_where((gp_two_x,gp_two_y))
-        global two_pos
-        two_pos = piece_position
-                
-        gp_three.find_where((gp_three_x,gp_three_y))
-        global three_pos
-        three_pos = piece_position
-                
-        gp_four.find_where((gp_four_x,gp_four_y))
-        global four_pos
-        four_pos = piece_position
-            
-        bp_one.find_where((bp_one_x,bp_one_y))
-        global five_pos
-        five_pos = piece_position
-                
-        bp_two.find_where((bp_two_x,bp_two_y))
-        global six_pos
-        six_pos = piece_position
-                
-        bp_three.find_where((bp_three_x,bp_three_y))
-        global seven_pos
-        seven_pos = piece_position
-
-        bp_four.find_where((bp_four_x,bp_four_y))
-        global eight_pos
-        eight_pos = piece_position
-            
-    
     def start_move(self,start):
         global selected_piece
         if start == 1:                  #the integer values for start represent the piece itself
@@ -159,7 +158,35 @@ class Positions ():
             selected_piece = seven_pos 
         elif start == 8:
             selected_piece = eight_pos
-            
+
+class Rules():
+    def rule_set():
+        match available_pos:
+            case 1:
+                if selected_piece == 2 or 8 or 9:
+                    print('valid 1')
+            case 2:
+                if selected_piece == 1 or 3 or 9:
+                    print('valid 2')
+            case 3:
+                if selected_piece == 2 or 4 or 9:
+                    print('valid 3')
+            case 4:
+                if selected_piece == 3 or 5 or 9:
+                    print('valid 4')
+            case 5:
+                if selected_piece == 4 or 6 or 9:
+                    print('valid 5')
+            case 6:
+                if selected_piece == 5 or 7 or 9:
+                    print('valid 6')
+            case 7:
+                if selected_piece == 6 or 8 or 9:
+                    print('valid 7')
+            case 8:
+                if selected_piece == 7 or 1 or 9:
+                    print('valid 8')
+
     
 pygame.init()
 
@@ -185,6 +212,10 @@ while running:
         bp_three = Perepere('blue_perepere.png',[bp_three_x,bp_three_y])
         bp_four = Perepere('blue_perepere.png',[bp_four_x,bp_four_y])
 
+        logic = gameLogic()
+
+        rules = Rules()
+
         board = pygame.image.load('guidestar.png')
 
 
@@ -192,34 +223,67 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             
             if gp_one.rect.collidepoint(event.pos):
-                print()
+                logic.find_where()
+                logic.set_position()
+                logic.start_move(1)
+                logic.find_available_position()
+                rules.rule_set()
+
 
 
             if gp_two.rect.collidepoint(event.pos):
-                print()
+                logic.find_where()
+                logic.set_position()
+                logic.start_move(2)
+                logic.find_available_position()
+                rules.rule_set()
 
            
             if gp_three.rect.collidepoint(event.pos):
-                print()
+                logic.find_where()
+                logic.set_position()
+                logic.start_move(3)
+                logic.find_available_position()
+                rules.rule_set()
 
                 
             if gp_four.rect.collidepoint(event.pos):
-                print()
+                logic.find_where()
+                logic.set_position()
+                logic.start_move(4)
+                logic.find_available_position()
+                rules.rule_set()
 
 
             if bp_one.rect.collidepoint(event.pos):
-                print()
+                logic.find_where()
+                logic.set_position()
+                logic.start_move(5)
+                logic.find_available_position()
+                rules.rule_set()
                 
             if bp_two.rect.collidepoint(event.pos):
-                print()
+                logic.find_where()
+                logic.set_position()
+                logic.start_move(6)
+                logic.find_available_position()
+                rules.rule_set()
 
                 
             if bp_three.rect.collidepoint(event.pos):
-                print()
+                logic.find_where()
+                logic.set_position()
+                logic.start_move(7)
+                logic.find_available_position()
+                rules.rule_set()
 
                 
             if bp_four.rect.collidepoint(event.pos):
-                print()
+                logic.find_where()
+                logic.set_position()
+                logic.start_move(8)
+                logic.find_available_position()
+                rules.rule_set()
 
                 
         if event.type == pygame.KEYDOWN:
