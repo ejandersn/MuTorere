@@ -53,6 +53,9 @@ class Perepere(pygame.sprite.Sprite):
         self.image = pygame.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
+
+    def update_local(self,new_location):
+        self.rect.left, self.rect.top = new_location
     
     def find_where(self,pos): #This finds where perepere are at
             global position
@@ -172,45 +175,6 @@ class game_logic():
           
         if total == 44:
             available_pos = 1
-
-    # def move_to_available(self):
-       
-    #     if total == 36:
-    #         global available_pos
-    #         available_pos = 9
-    #         move_to = nine_x,nine_y
-    
-    #     if total == 37:
-    #         available_pos = 8
-    #         move_to = eight_x,eight_y
-
-    #     if total == 38:
-    #         available_pos = 7
-    #         move_to = seven_x,seven_y
-          
-    #     if total == 39:
-    #         available_pos = 6
-    #         move_to = six_x,six_y
-         
-    #     if total == 40:
-    #         available_pos = 5
-    #         move_to = five_x,five_y
-          
-    #     if total == 41:
-    #         available_pos = 4
-    #         move_to = four_x,four_y
-
-    #     if total == 42:
-    #         available_pos = 3
-    #         move_to = three_x,three_y
-            
-    #     if total == 43:
-    #         available_pos = 2
-    #         move_to = two_x,two_y
-          
-    #     if total == 44:
-    #         available_pos = 1
-    #         move_to = one_x,one_y
 
     def check_neighbor(self):
        
@@ -477,17 +441,18 @@ user_text = int()
 color = (0,0,0)
 input_rect = pygame.Rect(100,700,50,32)
 running = True
+gp_one = Perepere('green_perepere.png',[gp_one_x,gp_one_y])
+gp_two = Perepere('green_perepere.png', [gp_two_x,gp_two_y])
+gp_three = Perepere('green_perepere.png',[gp_three_x,gp_three_y])
+gp_four = Perepere('green_perepere.png', [gp_four_x,gp_four_y])
+bp_one = Perepere('blue_perepere.png',[bp_one_x,bp_one_y])
+bp_two = Perepere('blue_perepere.png',[bp_two_x,bp_two_y])
+bp_three = Perepere('blue_perepere.png',[bp_three_x,bp_three_y])
+bp_four = Perepere('blue_perepere.png',[bp_four_x,bp_four_y])
 while running:
     for event in pygame.event.get():
 
-        gp_one = Perepere('green_perepere.png',[gp_one_x,gp_one_y])
-        gp_two = Perepere('green_perepere.png', [gp_two_x,gp_two_y])
-        gp_three = Perepere('green_perepere.png',[gp_three_x,gp_three_y])
-        gp_four = Perepere('green_perepere.png', [gp_four_x,gp_four_y])
-        bp_one = Perepere('blue_perepere.png',[bp_one_x,bp_one_y])
-        bp_two = Perepere('blue_perepere.png',[bp_two_x,bp_two_y])
-        bp_three = Perepere('blue_perepere.png',[bp_three_x,bp_three_y])
-        bp_four = Perepere('blue_perepere.png',[bp_four_x,bp_four_y])
+
 
         location = game_logic()
         move_piece = game_logic()
@@ -504,6 +469,7 @@ while running:
                 print('available pos =', available_pos)
                 if approved_move == True:
                     gp_one_x,gp_one_y = move_to
+                    gp_one.update_local(move_to)
     
                 
 
@@ -554,6 +520,7 @@ while running:
                 print('available pos =', available_pos)
                 if approved_move == True:
                     bp_one_x,bp_one_y  = move_to
+                    bp_one.update_local(move_to)
                 
                     
 
