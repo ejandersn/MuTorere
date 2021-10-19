@@ -53,8 +53,6 @@ class Perepere(pygame.sprite.Sprite):
         self.image = pygame.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
-        global type
-        type = image_file
     
     def find_where(self,pos): #This finds where perepere are at
             global position
@@ -90,7 +88,6 @@ class game_logic():
 
     def find_all(self):     #This shows the specfic location in corralation with its respective piecessss  
             gp_one.find_where((gp_one_x,gp_one_y))
-            tahi_type = 1
             global one_pos
             one_pos = position
            
@@ -122,7 +119,7 @@ class game_logic():
             global eight_pos
             eight_pos = position
 
-            logic.find_available_position()            
+                        
 
     def start_move(self,start):
         global selected_piece
@@ -147,6 +144,7 @@ class game_logic():
         global total
         
         total = one_pos+two_pos+three_pos+four_pos+five_pos+six_pos+seven_pos+eight_pos
+        
         if total == 36:
             global available_pos
             available_pos = 9
@@ -213,8 +211,6 @@ class game_logic():
     #     if total == 44:
     #         available_pos = 1
     #         move_to = one_x,one_y
-        
-
 
     def check_neighbor(self):
        
@@ -372,96 +368,94 @@ class game_logic():
                     if five_pos == 1 or six_pos == 1 or seven_pos == 1:
                         approved_move = False
                         print('invalid')
+
            
     def movement_rules(self):
         global move_to
+        move_to = (),()
         print('this is ', approved)
         if approved == True:      
-
-                if available_pos == 9 :
-                    if selected_piece == 1 or selected_piece == 2 or selected_piece == 3 or selected_piece == 4 or selected_piece == 5 or selected_piece == 6 or selected_piece == 7 or selected_piece == 8:
-                        move_to = (nine_x,nine_y)
-                        print('valid')
-                        approved_move = True
-                    else:
-                        approved_move = False
+            if available_pos == 9:
+                    move_to = (nine_x,nine_y)
+                    print('valid')
+                    approved_move = True
+            else:
+                    approved_move = False
                 
-                if available_pos == 1:
-                    if selected_piece == 2 or selected_piece == 8 or selected_piece == 9:
-                        move_to = (one_x,one_y)
-                        print('valid')
-                        approved_move = True
-                    else:
-                        approved_move = False
+
+            if available_pos == 1:
+                if selected_piece == 2 or selected_piece == 8 or selected_piece == 9:
+                    move_to = (one_x,one_y)
+                    print('valid')
+                    approved_move = True
+                else:
+                    approved_move = False
+
+            if available_pos == 2:
+                if selected_piece == 2 or selected_piece == 3 or selected_piece == 9:
+                    print ('valid')
+                    approved_move = True
+
+                    move_to = (two_x,two_y)
+                else:
+                    approved_move = False
+
+            if available_pos == 3:
+                if selected_piece == 2 or selected_piece == 4 or selected_piece == 9:
+                    print('valid')
+                    approved_move = True
+                    move_to = (three_x,three_y)
+                else:
+                    approved_move = False
+
+            if available_pos == 4:
+                if selected_piece == 3 or selected_piece == 5 or selected_piece == 9:
+                    move_to = (four_x,four_y)
+                    print('valid')
+                    approved_move = True
+
+                else:
+                    approved_move = False
+
+            if available_pos == 5:
+                if selected_piece == 4 or selected_piece == 6 or selected_piece == 9:
+                    move_to = (five_x,five_y)
+                    print('valid')
+                    approved_move = True
+
+                else:
+                    approved_move = False
+
+            if available_pos == 6:
+                if selected_piece == 5 or selected_piece == 7 or selected_piece == 9:
+                    move_to = (six_x,six_y)
+                    print('valid')
+                    approved_move = True
+
+                else:
+                    approved_move = False
+
+            if available_pos == 7:
+                if selected_piece == 6 or selected_piece == 8 or selected_piece == 9:
+                    move_to = (seven_x,seven_y)
+                    print('valid')
+
+            else:
+                approved_move = False
+
+            if available_pos == 8:
+                if selected_piece == 7 or selected_piece == 1 or selected_piece == 9:
+                    move_to = (eight_x,eight_y)
+                    print('valid')
 
 
-                if available_pos == 2:
-                    if selected_piece == 2 or selected_piece == 3 or selected_piece == 9:
-                        print ('valid')
-                        approved_move = True
-
-                        move_to = (two_x,two_y)
-                    else:
-                        approved_move = False
-
-                if available_pos == 3:
-                    if selected_piece == 2 or selected_piece == 4 or selected_piece == 9:
-                        print('valid')
-                        approved_move = True
-                        move_to = (three_x,three_y)
-                    else:
-                        approved_move = False
-
-                if available_pos == 4:
-                    if selected_piece == 3 or selected_piece == 5 or selected_piece == 9:
-                        move_to = (four_x,four_y)
-                        print('valid')
-                        approved_move = True
-
-                    else:
-                        approved_move = False
-
-                if available_pos == 5:
-                    if selected_piece == 4 or selected_piece == 6 or selected_piece == 9:
-                        move_to = (five_x,five_y)
-                        print('valid')
-                        approved_move = True
-
-                    else:
-                        approved_move = False
-
-                if available_pos == 6:
-                    if selected_piece == 5 or selected_piece == 7 or selected_piece == 9:
-                        move_to = (six_x,six_y)
-                        print('valid')
-                        approved_move = True
-
-                    else:
-                        approved_move = False
-
-                if available_pos == 7:
-                    if selected_piece == 6 or selected_piece == 8 or selected_piece == 9:
-                        move_to = (seven_x,seven_y)
-                        print('valid')
-
-                    else:
-                        approved_move = False
-
-                if available_pos == 8:
-                    if selected_piece == 7 or selected_piece == 1 or selected_piece == 9:
-                        move_to = (eight_x,eight_y)
-                        print('valid')
-
-
-                    else:
-                        approved_move = False
                 else:
                     approved_move = False
 
         else:
             approved_move = False
 
-
+   
 
 
 
@@ -502,10 +496,12 @@ while running:
 
             if gp_one.rect.collidepoint(event.pos): 
                 approved_move = True
-                location.find_all() #we have to constantly know where all pieces are otherwise we do not know where to go
-                move_piece.start_move(1)
+                location.find_all()
+                logic.find_available_position()
+                logic.start_move(1)
                 logic.check_neighbor()
                 logic.movement_rules()
+                print('available pos =', available_pos)
                 if approved_move == True:
                     gp_one_x,gp_one_y = move_to
     
@@ -514,10 +510,11 @@ while running:
             if gp_two.rect.collidepoint(event.pos):
                 approved_move = True
                 location.find_all()
-                move_piece.start_move(2)
+                logic.find_available_position()
+                logic.start_move(2)
                 logic.check_neighbor()
                 logic.movement_rules()
-                logic.find_available_position()
+                print('available pos =', available_pos)
                 if approved_move == True:
                     gp_two_x,gp_two_y = move_to
                 
@@ -526,10 +523,11 @@ while running:
             if gp_three.rect.collidepoint(event.pos):
                 approved_move = True
                 location.find_all()
+                logic.find_available_position()
                 move_piece.start_move(3)
                 logic.check_neighbor()
                 logic.movement_rules()
-                logic.find_available_position()
+                print('available pos =', available_pos)
                 if approved_move == True:
                     gp_three_x,gp_three_y = move_to
               
@@ -537,10 +535,11 @@ while running:
             if gp_four.rect.collidepoint(event.pos):
                 approved_move = True
                 location.find_all()
+                logic.find_available_position()
                 move_piece.start_move(4)
                 logic.check_neighbor()
                 logic.movement_rules()
-                logic.find_available_position()
+                print('available pos =', available_pos)
                 if approved_move == True:
                     gp_four_x,gp_four_y = move_to
                 
@@ -548,10 +547,11 @@ while running:
             if bp_one.rect.collidepoint(event.pos):
                 approved_move = True
                 location.find_all()
+                logic.find_available_position()
                 move_piece.start_move(5)
                 logic.check_neighbor()
                 logic.movement_rules()
-                logic.find_available_position()
+                print('available pos =', available_pos)
                 if approved_move == True:
                     bp_one_x,bp_one_y  = move_to
                 
@@ -560,10 +560,11 @@ while running:
             if bp_two.rect.collidepoint(event.pos):
                 approved_move = True
                 location.find_all()
+                logic.find_available_position()
                 move_piece.start_move(6)
                 logic.check_neighbor()
                 logic.movement_rules()
-                logic.find_available_position()
+                print('available pos =', available_pos)
                 if approved_move == True:
                     bp_two_x,bp_two_y = move_to
                 
@@ -571,10 +572,11 @@ while running:
             if bp_three.rect.collidepoint(event.pos):
                 approved_move = True
                 location.find_all()
+                logic.find_available_position()
                 move_piece.start_move(7)
                 logic.check_neighbor()
                 logic.movement_rules()
-                logic.find_available_position()
+                print('available pos =', available_pos)
                 if approved_move == True:
                     bp_three_x, bp_three_y = move_to
                 
@@ -582,10 +584,11 @@ while running:
             if bp_four.rect.collidepoint(event.pos):
                 approved_move = True
                 location.find_all()
+                logic.find_available_position()
                 move_piece.start_move(8)
                 logic.check_neighbor()
                 logic.movement_rules()
-                logic.find_available_position()
+                print('available pos =', available_pos)
                 if approved_move == True:
                     bp_four_x, bp_four_y = move_to
                 
@@ -609,4 +612,5 @@ while running:
         screen.blit(bp_three.image,bp_three.rect)
         screen.blit(bp_four.image,bp_four.rect)
         pygame.display.flip()
+        
 pygame.quit()
